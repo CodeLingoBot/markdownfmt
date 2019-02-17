@@ -45,7 +45,7 @@ func formatCode(lang string, text []byte) (formattedCode []byte, ok bool) {
 	}
 }
 
-// Block-level callbacks.
+// BlockCode: Block-level callbacks.
 func (_ *markdownRenderer) BlockCode(out *bytes.Buffer, text []byte, lang string) {
 	doubleSpace(out)
 
@@ -263,7 +263,7 @@ func (_ *markdownRenderer) FootnoteItem(out *bytes.Buffer, name, text []byte, fl
 	out.WriteString("<FootnoteItem: Not implemented.>") // TODO
 }
 
-// Span-level callbacks.
+// AutoLink: Span-level callbacks.
 func (_ *markdownRenderer) AutoLink(out *bytes.Buffer, link []byte, kind int) {
 	out.Write(escape(link))
 }
@@ -374,7 +374,7 @@ func needsEscaping(text []byte, lastNormalText string) bool {
 	}
 }
 
-// Low-level callbacks.
+// Entity: Low-level callbacks.
 func (_ *markdownRenderer) Entity(out *bytes.Buffer, entity []byte) {
 	out.Write(entity)
 }
@@ -400,7 +400,7 @@ func (mr *markdownRenderer) NormalText(out *bytes.Buffer, text []byte) {
 	}
 }
 
-// Header and footer.
+// DocumentHeader: Header and footer.
 func (_ *markdownRenderer) DocumentHeader(out *bytes.Buffer) {}
 func (_ *markdownRenderer) DocumentFooter(out *bytes.Buffer) {}
 
